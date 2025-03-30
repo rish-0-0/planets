@@ -1,8 +1,8 @@
 # Planets
 
-## Playing with ThreeJS
+## Space with ThreeJS
 
-## Example: 3 body Problem
+### Example: 3 body Problem
 
 ![3 Body Highlight](./src/assets/3-body_clip_short.gif)
 
