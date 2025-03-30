@@ -14,3 +14,7 @@ Testing out newtonian and other models of gravity using ThreeJS
 
 - Universal Gravitation Constant
 - Collision Detections (they're kinda not perfect at the moment)
+
+## Contributors
+
+[@rish-0-0](https://github.com/rish-0-0)
