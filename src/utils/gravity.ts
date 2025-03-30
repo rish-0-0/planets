@@ -1,7 +1,7 @@
 // Newton's Gravitational Laws (Rishabh's)
 import * as THREE from 'three';
 
-const UNIVERSAL_GRAVITATIONAL_CONSTANT = 6.67e-7;
+const UNIVERSAL_GRAVITATIONAL_CONSTANT = 6.67e-5;
 
 import {CelestialBody} from "../components/CelestialBody.ts";
 

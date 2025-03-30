@@ -6,20 +6,14 @@ import {updateBodyPosition} from "./utils/gravity.ts";
 
 const scene = new THREE.Scene();
 
-const gridSize: number = 10;
-const gridDivisions: number = 20;
-
-const gridHelper = new THREE.GridHelper(gridSize, gridDivisions);
-scene.add(gridHelper);
-
 const camera = new THREE.PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
-  0.1,
-  1000
+  window.innerWidth / window.innerHeight,
+  0.1
 );
 
-camera.position.z = 3;
+camera.position.z = 30;
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -30,24 +24,24 @@ const light = new THREE.AmbientLight(0xffffff, 1);
 scene.add(light);
 
 
-
+const COMMON_MASS = 1.35e5;
 // Add a planet
-const sun = new CelestialBody(1e7, 1.0, 0xffff00, new THREE.Vector3(0.0, 0.0, 0));
-sun.addToScene(scene);
-sun.velocity.set(0.0,0,0);
+const planet1 = new CelestialBody(COMMON_MASS, 0.5, 0xffff00, new THREE.Vector3(4.0, 0.0, 0));
+planet1.addToScene(scene);
+planet1.velocity.set(0.0, 1.0, 0.0);
 
-const mercury = new CelestialBody(1e1, 0.2, 0x00ffff, new THREE.Vector3(4.0, 0.0, 0));
-mercury.addToScene(scene);
-mercury.velocity.set(0, 0, 0.725);
+const planet2 = new CelestialBody(COMMON_MASS, 0.5, 0x00ffff, new THREE.Vector3(-2.0, 3.564, 0));
+planet2.addToScene(scene);
+planet2.velocity.set(-0.866, -0.5, 0.0);
 
-const venus = new CelestialBody(1e2, 0.3, 0xff0000, new THREE.Vector3(0.0, 6.0, 0));
-venus.addToScene(scene);
-venus.velocity.set(0, 0, -0.425);
+const planet3 = new CelestialBody(COMMON_MASS, 0.5, 0xff0000, new THREE.Vector3(-2.0, -3.564, 0));
+planet3.addToScene(scene);
+planet3.velocity.set(0.866, -0.5, 0.0);
 
 const allObjects: CelestialBody[] = [];
-allObjects.push(sun);
-allObjects.push(mercury);
-allObjects.push(venus);
+allObjects.push(planet1);
+allObjects.push(planet2);
+allObjects.push(planet3);
 
 
 
@@ -90,6 +84,7 @@ function animate() {
         for (let i = 0; i < allObjects.length; i++) {
             for (let j = 0; j < allObjects.length; j++) {
                 if (i == j) {
+                    // same body...
                     continue;
                 }
                 const body1 = allObjects[i];
